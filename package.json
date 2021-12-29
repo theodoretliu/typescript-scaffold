@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-frontend": "esbuild frontend/App.tsx --bundle --target=chrome58 --outfile=dist/out.js && cp frontend/index.html dist/index.html",
-    "build-backend": "esbuild backend/server.ts --bundle --platform=node --target=node14 --outfile=dist/server.js",
+    "build-frontend": "cp frontend/index.html dist/index.html && esbuild frontend/App.tsx --bundle --target=chrome58 --outfile=dist/out.js --watch",
+    "build-backend": "esbuild backend/server.ts --bundle --platform=node --target=node14 --outfile=dist/server.js --watch",
     "build": "npm run build-frontend && npm run build-backend",
     "run-frontend": "serve dist",
-    "run-backend": "node dist/server.js"
+    "run-backend": "nodemon dist/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +23,7 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "esbuild": "^0.14.9",
+    "nodemon": "^2.0.15",
     "serve": "^13.0.2"
   }
 }
