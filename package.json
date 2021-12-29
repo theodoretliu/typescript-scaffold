@@ -6,9 +6,10 @@
   "scripts": {
     "build-frontend": "cp frontend/index.html dist/index.html && esbuild frontend/App.tsx --bundle --target=chrome58 --outfile=dist/out.js --watch",
     "build-backend": "esbuild backend/server.ts --bundle --platform=node --target=node14 --outfile=dist/server.js --watch",
-    "build": "npm run build-frontend && npm run build-backend",
-    "run-frontend": "serve dist",
-    "run-backend": "nodemon dist/server.js"
+    "build": "concurrently npm:build-*",
+    "serve-frontend": "serve dist",
+    "serve-backend": "nodemon dist/server.js",
+    "serve": "concurrently npm:serve-*"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,7 @@
     "@types/node": "^17.0.5",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "concurrently": "^6.5.1",
     "esbuild": "^0.14.9",
     "nodemon": "^2.0.15",
     "serve": "^13.0.2"
